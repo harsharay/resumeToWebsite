@@ -899,7 +899,7 @@
     </div>
 
     <script>
-        const API_URL = `resumetowebsite.railway.internal` || 'http://localhost:3000/api/generate';
+        const API_URL = 'http://localhost:3000/api/generate';
         const VISITOR_STORAGE_KEY = 'resumetosite_visitor_id';
         let selectedFile = null;
         let generatedHTML = null;
@@ -1065,13 +1065,13 @@
                 formData.append('template', selectedTemplate);
                 formData.append('visitor_id', getVisitorId());
 
-                // For local development
+                // // For local development
                 // const response = await fetch(`${API_URL}/upload-stream`, {
                 //     method: 'POST',
                 //     body: formData,
                 // });
 
-                const response = await fetch("/upload-stream", {
+                const response = await fetch("/api/generate/upload-stream", {
                     method: "POST",
                     body: formData,
                 });
