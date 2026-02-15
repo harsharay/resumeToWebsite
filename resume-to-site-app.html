@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResumeToSite - Transform Your Resume into a Stunning Website</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF6B35;
+            --primary-dark: #E85A28;
+            --secondary: #004E89;
+            --accent: #FFD23F;
+            --bg-light: #FAFAFA;
+            --bg-white: #FFFFFF;
+            --text-dark: #1A1A1A;
+            --text-gray: #6B7280;
+            --border: #E5E7EB;
+            --success: #10B981;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: var(--bg-white);
+            border-bottom: 2px solid var(--primary);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            filter: blur(60px);
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 210, 63, 0.2);
+            border-radius: 50%;
+            filter: blur(80px);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--text-dark);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(255, 210, 63, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(255, 210, 63, 0.4);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        /* Steps Section */
+        .steps {
+            margin-bottom: 4rem;
+        }
+
+        .steps h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--text-dark);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .step-card {
+            background: var(--bg-white);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 2px solid var(--border);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .step-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(255, 107, 53, 0.15);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -1rem;
+            left: 2rem;
+            width: 3rem;
+            height: 3rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .step-card h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            margin-top: 1rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-dark);
+        }
+
+        .step-card p {
+            color: var(--text-gray);
+        }
+
+        /* Upload Section */
+        .upload-section {
+            background: var(--bg-white);
+            border-radius: 20px;
+            padding: 3rem;
+            border: 3px dashed var(--border);
+            margin-bottom: 3rem;
+            transition: all 0.3s;
+        }
+
+        .upload-section.dragover {
+            border-color: var(--primary);
+            background: rgba(255, 107, 53, 0.05);
+        }
+
+        .upload-content {
+            text-align: center;
+        }
+
+        .upload-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .upload-section h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .upload-section p {
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+        }
+
+        .upload-options {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .upload-btn, .text-input-btn {
+            background: var(--primary);
+            color: white;
+            padding: 0.875rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .upload-btn:hover, .text-input-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.3);
+        }
+
+        .upload-btn:disabled {
+            background: var(--border);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        /* Text Input Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: var(--bg-white);
+            padding: 3rem;
+            border-radius: 20px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.3s;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text-gray);
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: var(--text-dark);
+        }
+
+        .modal h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 300px;
+            padding: 1rem;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            resize: vertical;
+            transition: border-color 0.3s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            justify-content: flex-end;
+        }
+
+        .btn-secondary {
+            background: var(--border);
+            color: var(--text-dark);
+            padding: 0.875rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .btn-secondary:hover {
+            background: #D1D5DB;
+        }
+
+        /* File Info */
+        .file-info {
+            display: none;
+            background: var(--bg-white);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 2px solid var(--success);
+        }
+
+        .file-info.active {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .file-details {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .file-icon {
+            font-size: 2.5rem;
+        }
+
+        .file-name {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .file-size {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        .remove-file {
+            background: var(--error);
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .remove-file:hover {
+            background: #DC2626;
+        }
+
+        /* Generate Button */
+        .generate-section {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .generate-btn {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            color: white;
+            padding: 1.25rem 3rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.25rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Syne', sans-serif;
+            box-shadow: 0 12px 30px rgba(255, 107, 53, 0.3);
+        }
+
+        .generate-btn:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 40px rgba(255, 107, 53, 0.4);
+        }
+
+        .generate-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Loading Spinner */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .loading.active {
+            display: block;
+        }
+
+        .spinner {
+            border: 4px solid var(--border);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading p {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+        }
+
+        /* Results Section */
+        .results {
+            display: none;
+            background: var(--bg-white);
+            border-radius: 20px;
+            padding: 3rem;
+            border: 2px solid var(--success);
+        }
+
+        .results.active {
+            display: block;
+        }
+
+        .results h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .success-icon {
+            color: var(--success);
+            font-size: 2.5rem;
+        }
+
+        .code-preview {
+            background: #1E1E1E;
+            color: #D4D4D4;
+            padding: 1.5rem;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin-bottom: 2rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            max-height: 400px;
+            position: relative;
+        }
+
+        .copy-code-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+
+        .copy-code-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .copy-code-btn.copied {
+            background: var(--success);
+        }
+
+        .result-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .download-btn, .preview-btn {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .download-btn:hover, .preview-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .preview-btn {
+            background: var(--secondary);
+        }
+
+        .preview-btn:hover {
+            background: #003D6B;
+        }
+
+        /* Google Sites Info */
+        .google-sites-info {
+            background: linear-gradient(135deg, #FFF7ED 0%, #FED7AA 100%);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 2rem;
+            border: 2px solid var(--accent);
+        }
+
+        .google-sites-info h4 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .google-sites-info ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .google-sites-info li {
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .google-sites-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: white;
+            color: var(--primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: 2px solid var(--primary);
+        }
+
+        .google-sites-link:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Error Message */
+        .error-message {
+            display: none;
+            background: #FEE2E2;
+            border: 2px solid var(--error);
+            color: #991B1B;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .error-message.active {
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero {
+                padding: 4rem 1.5rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .container {
+                padding: 2rem 1.5rem;
+            }
+
+            .upload-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .modal-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .result-actions {
+                flex-direction: column;
+            }
+
+            .result-actions button,
+            .result-actions a {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">ResumeToSite</div>
+            <nav class="nav-links">
+                <a href="#how-it-works">How it Works</a>
+                <a href="#upload">Get Started</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Turn Your Resume Into a Stunning Website in Minutes</h1>
+            <p>Upload your resume and let AI create a beautiful, professional portfolio website for you. No coding required.</p>
+            <a href="#upload" class="cta-button">Get Started Free →</a>
+        </div>
+    </section>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- How It Works -->
+        <section class="steps" id="how-it-works">
+            <h2>How It Works</h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Upload Resume</h3>
+                    <p>Drop your resume file (PDF, DOCX, TXT) or paste the text directly</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>AI Generates</h3>
+                    <p>Our AI analyzes your resume and creates a beautiful HTML website</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Download & Deploy</h3>
+                    <p>Get your HTML code and deploy it to Google Sites for free</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Upload Section -->
+        <section id="upload">
+            <div class="upload-section" id="dropzone">
+                <div class="upload-content">
+                    <div class="upload-icon">📄</div>
+                    <h3>Upload Your Resume</h3>
+                    <p>Drag and drop your file here, or click to browse</p>
+                    <div class="upload-options">
+                        <label for="fileInput" class="upload-btn">Choose File</label>
+                        <button class="text-input-btn" onclick="openTextModal()">Paste Text</button>
+                    </div>
+                    <input type="file" id="fileInput" accept=".pdf,.doc,.docx,.txt">
+                    <p style="margin-top: 1rem; font-size: 0.9rem;">Supported: PDF, DOCX, TXT (Max 5MB)</p>
+                </div>
+            </div>
+
+            <!-- File Info -->
+            <div class="file-info" id="fileInfo">
+                <div class="file-details">
+                    <span class="file-icon">📎</span>
+                    <div>
+                        <div class="file-name" id="fileName"></div>
+                        <div class="file-size" id="fileSize"></div>
+                    </div>
+                </div>
+                <button class="remove-file" onclick="removeFile()">Remove</button>
+            </div>
+
+            <!-- Error Message -->
+            <div class="error-message" id="errorMessage"></div>
+
+            <!-- Generate Button -->
+            <div class="generate-section">
+                <button class="generate-btn" id="generateBtn" onclick="generateWebsite()" disabled>
+                    ✨ Generate My Website
+                </button>
+            </div>
+
+            <!-- Loading -->
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Creating your stunning website...</p>
+            </div>
+
+            <!-- Results -->
+            <div class="results" id="results">
+                <h3>
+                    <span class="success-icon">✓</span>
+                    Your Website is Ready!
+                </h3>
+                
+                <div class="code-preview" id="codePreview">
+                    <button class="copy-code-btn" onclick="copyCode()">Copy Code</button>
+                    <pre id="generatedCode"></pre>
+                </div>
+
+                <div class="result-actions">
+                    <button class="download-btn" onclick="downloadHTML()">
+                        ⬇️ Download HTML
+                    </button>
+                    <button class="preview-btn" onclick="previewWebsite()">
+                        👁️ Preview Website
+                    </button>
+                </div>
+
+                <div class="google-sites-info">
+                    <h4>🚀 Deploy to Google Sites (Free)</h4>
+                    <ol>
+                        <li>Go to <a href="https://sites.google.com" target="_blank" class="google-sites-link">sites.google.com →</a></li>
+                        <li>Click "Blank" to create a new site</li>
+                        <li>Click "Insert" → "Embed" → "Embed code"</li>
+                        <li>Paste your HTML code and click "Insert"</li>
+                        <li>Publish your site and share your custom URL!</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Text Input Modal -->
+    <div class="modal" id="textModal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeTextModal()">×</button>
+            <h3>Paste Your Resume Text</h3>
+            <textarea id="resumeText" placeholder="Paste your resume content here..."></textarea>
+            <div class="modal-actions">
+                <button class="btn-secondary" onclick="closeTextModal()">Cancel</button>
+                <button class="upload-btn" onclick="submitText()">Continue</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 ResumeToSite. Transform your career story into a digital masterpiece.</p>
+    </footer>
+
+    <script>
+        let selectedFile = null;
+        let resumeContent = null;
+        let generatedHTML = null;
+
+        // API Configuration
+        const API_KEY = 'YOUR_ANTHROPIC_API_KEY_HERE'; // User will add their key
+        const API_URL = 'https://api.anthropic.com/v1/messages';
+
+        // File Upload Handlers
+        const fileInput = document.getElementById('fileInput');
+        const dropzone = document.getElementById('dropzone');
+
+        fileInput.addEventListener('change', handleFileSelect);
+
+        dropzone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropzone.classList.add('dragover');
+        });
+
+        dropzone.addEventListener('dragleave', () => {
+            dropzone.classList.remove('dragover');
+        });
+
+        dropzone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropzone.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleFile(files[0]);
+            }
+        });
+
+        function handleFileSelect(e) {
+            const file = e.target.files[0];
+            if (file) {
+                handleFile(file);
+            }
+        }
+
+        async function handleFile(file) {
+            // Validate file
+            const validTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'text/plain'];
+            const maxSize = 5 * 1024 * 1024; // 5MB
+
+            if (!validTypes.includes(file.type)) {
+                showError('Please upload a PDF, DOCX, or TXT file');
+                return;
+            }
+
+            if (file.size > maxSize) {
+                showError('File size must be less than 5MB');
+                return;
+            }
+
+            selectedFile = file;
+
+            // Read file content
+            const reader = new FileReader();
+            reader.onload = async (e) => {
+                if (file.type === 'text/plain') {
+                    resumeContent = e.target.result;
+                } else if (file.type === 'application/pdf') {
+                    // For PDF, we'll send the base64 data to Claude
+                    resumeContent = e.target.result;
+                } else {
+                    // For DOCX, show error for now (need server-side processing)
+                    showError('DOCX files require server-side processing. Please use PDF or TXT, or paste text directly.');
+                    return;
+                }
+                
+                displayFileInfo(file);
+                enableGenerateButton();
+            };
+
+            if (file.type === 'text/plain') {
+                reader.readAsText(file);
+            } else {
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function displayFileInfo(file) {
+            document.getElementById('fileName').textContent = file.name;
+            document.getElementById('fileSize').textContent = formatFileSize(file.size);
+            document.getElementById('fileInfo').classList.add('active');
+            hideError();
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes < 1024) return bytes + ' B';
+            if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+            return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+        }
+
+        function removeFile() {
+            selectedFile = null;
+            resumeContent = null;
+            fileInput.value = '';
+            document.getElementById('fileInfo').classList.remove('active');
+            document.getElementById('generateBtn').disabled = true;
+        }
+
+        function enableGenerateButton() {
+            document.getElementById('generateBtn').disabled = false;
+        }
+
+        // Text Modal Functions
+        function openTextModal() {
+            document.getElementById('textModal').classList.add('active');
+        }
+
+        function closeTextModal() {
+            document.getElementById('textModal').classList.remove('active');
+        }
+
+        function submitText() {
+            const text = document.getElementById('resumeText').value.trim();
+            if (!text) {
+                showError('Please enter your resume content');
+                return;
+            }
+
+            resumeContent = text;
+            selectedFile = new File([text], 'resume.txt', { type: 'text/plain' });
+            displayFileInfo(selectedFile);
+            enableGenerateButton();
+            closeTextModal();
+        }
+
+        // Generate Website
+        async function generateWebsite() {
+            if (!resumeContent) {
+                showError('Please upload a resume first');
+                return;
+            }
+
+            // Check API key
+            if (API_KEY === 'YOUR_ANTHROPIC_API_KEY_HERE') {
+                showError('Please add your Anthropic API key in the code (line 738)');
+                return;
+            }
+
+            // Show loading
+            document.getElementById('loading').classList.add('active');
+            document.getElementById('results').classList.remove('active');
+            hideError();
+
+            try {
+                let messages = [];
+
+                // Prepare the message based on file type
+                if (selectedFile.type === 'application/pdf') {
+                    // Send PDF as base64
+                    const base64Data = resumeContent.split(',')[1];
+                    messages = [{
+                        role: "user",
+                        content: [
+                            {
+                                type: "document",
+                                source: {
+                                    type: "base64",
+                                    media_type: "application/pdf",
+                                    data: base64Data
+                                }
+                            },
+                            {
+                                type: "text",
+                                text: "Please analyze this resume and create a modern, professional, responsive personal website in HTML. The website should have a clean, bold UI suitable for 18-40 year olds. Include all resume information with proper styling, animations, and a mobile-responsive design. Use modern fonts from Google Fonts and create an attractive color scheme. Return ONLY the complete HTML code, nothing else."
+                            }
+                        ]
+                    }];
+                } else {
+                    // Send text content
+                    messages = [{
+                        role: "user",
+                        content: `Please analyze this resume and create a modern, professional, responsive personal website in HTML. The website should have a clean, bold UI suitable for 18-40 year olds. Include all resume information with proper styling, animations, and a mobile-responsive design. Use modern fonts from Google Fonts and create an attractive color scheme. Return ONLY the complete HTML code, nothing else.
+
+Resume Content:
+${resumeContent}`
+                    }];
+                }
+
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-api-key': API_KEY,
+                        'anthropic-version': '2023-06-01'
+                    },
+                    body: JSON.stringify({
+                        model: 'claude-sonnet-4-20250514',
+                        max_tokens: 4000,
+                        messages: messages
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error?.message || 'API request failed');
+                }
+
+                const data = await response.json();
+                generatedHTML = data.content[0].text;
+
+                // Clean up the HTML (remove markdown code blocks if present)
+                generatedHTML = generatedHTML.replace(/```html\n?/g, '').replace(/```\n?/g, '').trim();
+
+                // Display results
+                displayResults(generatedHTML);
+
+            } catch (error) {
+                console.error('Error:', error);
+                showError(`Failed to generate website: ${error.message}`);
+            } finally {
+                document.getElementById('loading').classList.remove('active');
+            }
+        }
+
+        function displayResults(html) {
+            document.getElementById('generatedCode').textContent = html;
+            document.getElementById('results').classList.add('active');
+            
+            // Scroll to results
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Copy Code
+        function copyCode() {
+            const code = document.getElementById('generatedCode').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                const btn = document.querySelector('.copy-code-btn');
+                btn.textContent = '✓ Copied!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = 'Copy Code';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        // Download HTML
+        function downloadHTML() {
+            const blob = new Blob([generatedHTML], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'my-portfolio.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Preview Website
+        function previewWebsite() {
+            const blob = new Blob([generatedHTML], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            window.open(url, '_blank');
+        }
+
+        // Error Handling
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.textContent = '⚠️ ' + message;
+            errorDiv.classList.add('active');
+        }
+
+        function hideError() {
+            document.getElementById('errorMessage').classList.remove('active');
+        }
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
