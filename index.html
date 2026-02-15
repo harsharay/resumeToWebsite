@@ -1065,10 +1065,17 @@
                 formData.append('template', selectedTemplate);
                 formData.append('visitor_id', getVisitorId());
 
-                const response = await fetch(`${API_URL}/upload-stream`, {
-                    method: 'POST',
+                // For local development
+                // const response = await fetch(`${API_URL}/upload-stream`, {
+                //     method: 'POST',
+                //     body: formData,
+                // });
+
+                const response = await fetch("/upload-stream", {
+                    method: "POST",
                     body: formData,
                 });
+
 
                 if (!response.ok) {
                     const err = await response.json().catch(() => ({}));
